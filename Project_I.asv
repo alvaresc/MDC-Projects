@@ -8,9 +8,7 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-clc
-close all
-clear variables
+clc ; clear all ;close all ;
 
 %% Given Measurements for the Free Body Diagram
 x1 = 1.032 ;  % inches
@@ -47,11 +45,14 @@ F2 = sqrt( (F2_x).^2 + (F2_y).^2 ) ; % Combine the x and y component force vecto
 
 % Below are intermediate calculations
 
-fprintf('\nF1 with alpha at zero degrees: %4.4f\n',F1(zero_degree_index))
-fprintf('F1 with alpha at ten degrees: %4.4f\n',F1(ten_degree_index))
-fprintf('F2x with alpha at zero degrees: %4.4f\n',F2_x(zero_degree_index))
-fprintf('F2x with alpha at ten degrees: F2_x(ten_degree_index)')
+fprintf('F1 with alpha at zero degrees: %2.4f',F1(zero_degree_index))
 
+fprintf('This is F1 with alpha at ten degrees')
+F1(ten_degree_index)
+fprintf('This is F2x with alpha at zero degrees')
+F2_x(zero_degree_index)
+fprintf('This is F2x with alpha at ten degrees')
+F2_x(ten_degree_index)
 fprintf('This is F2y with alpha at zero degrees')
 F2_y(zero_degree_index)
 fprintf('This is F2y with alpha at ten degrees')
