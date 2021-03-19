@@ -47,11 +47,14 @@ F2 = sqrt( (F2_x).^2 + (F2_y).^2 ) ; % Combine the x and y component force vecto
 
 % Below are intermediate calculations
 
-fprintf('\nF1 with alpha at zero degrees: %4.4f\n',F1(zero_degree_index))
-fprintf('F1 with alpha at ten degrees: %4.4f\n',F1(ten_degree_index))
-fprintf('F2x with alpha at zero degrees: %4.4f\n',F2_x(zero_degree_index))
-fprintf('F2x with alpha at ten degrees: F2_x(ten_degree_index)')
-
+fprintf('This is F1 with alpha at zero degrees')
+F1(zero_degree_index)
+fprintf('This is F1 with alpha at ten degrees')
+F1(ten_degree_index)
+fprintf('This is F2x with alpha at zero degrees')
+F2_x(zero_degree_index)
+fprintf('This is F2x with alpha at ten degrees')
+F2_x(ten_degree_index)
 fprintf('This is F2y with alpha at zero degrees')
 F2_y(zero_degree_index)
 fprintf('This is F2y with alpha at ten degrees')
@@ -65,6 +68,7 @@ F3(zero_degree_index)
 fprintf('This is F3 with alpha at ten degrees')
 F3(ten_degree_index)
 
+
 %% Calculation of Shear Stress (DOUBLE-CHECK THIS SECTION)
 
 pin_radius_outer = 1/8 ; % inches
@@ -72,7 +76,6 @@ pin_thickness = 1/16 ; % inches
 pin_radius_inner = pin_radius_outer - pin_thickness ; % inches
 pin_inner_area = pi * pin_radius_inner^2 ; % inches^2
 pin_outer_area = pi * pin_radius_outer^2 ; % inches^2
-
 
 Area_Pin =  pin_outer_area - pin_inner_area ; % inches^2
 Tau_Pin_1_Shear = F1 / Area_Pin ; % psi
@@ -129,8 +132,6 @@ ylabel('Sigma (psi)') ;
 title('Sigma (Bearing) versus Angle for Rivets 1, 2, and 3') ;
 legend('Rivet 1', 'Rivet 2', 'Rivet 3') ;
 
-
-
 %% Maximum Bearing Strength Calculation
 
 % From Figure 2, we know the highest bearing stress will occur at pins 1
@@ -143,21 +144,16 @@ Maximum_Sigma_Bearing = Sigma_Pin_3_Bearing ;
 
 Bearing_Strength = Maximum_Sigma_Bearing * FOS ;
 
-
-
 %% Calculation of the Tearout Stress
 
-x = sqrt((.42)^2-(.125)^2) ;
-Area_Tearout = x * thickness ;
+x = sqrt((.3560)^2-(.125)^2) ;
+Area_Tearout = 2 * x * thickness ;
 
 Tau_Pin_1_Tearout = F1 / Area_Tearout ;
 Tau_Pin_2_Tearout = F2 / Area_Tearout ;
 Tau_Pin_3_Tearout = F3 / Area_Tearout ;
 
-
-
 %% Plotting Different Tearout Stresses at Rivets 1, 2, and 3
-
 figure(3)
 plot(alpha_degrees, Tau_Pin_1_Tearout, '-r') ;
 hold on 
@@ -168,8 +164,6 @@ xlabel('Alpha (degrees)') ;
 ylabel('Tau (psi)') ;
 title('Tau (Tearout) versus Angle for Rivets 1, 2, and 3') ;
 legend('Rivet 1', 'Rivet 2', 'Rivet 3') ;
-
-
 
 %% Maximum Tearout Strength Calculation 
 

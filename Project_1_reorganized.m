@@ -54,9 +54,9 @@ pin_radius_inner = pin_radius_outer - pin_thickness ; % inches
 pin_inner_area = pi * pin_radius_inner^2 ; % inches^2
 pin_outer_area = pi * pin_radius_outer^2 ; % inches^2
 Area_Pin =  pin_outer_area - pin_inner_area;  % inches^2
-Tau_Pin_1_Shear = F1 / Area_Pin ; % psi 
-Tau_Pin_2_Shear = F2 / Area_Pin ; % psi
-Tau_Pin_3_Shear = F3 / Area_Pin ; % psi
+Tau_Pin_1_Shear = F1 / Area_Pin;  % psi 
+Tau_Pin_2_Shear = F2 / Area_Pin; % psi
+Tau_Pin_3_Shear = F3 / Area_Pin;  % psi
 tau_rivet_critical = Tau_Pin_1_Shear;
 Sy_yield_rivet = FOS*2*tau_rivet_critical;
 
@@ -74,7 +74,7 @@ Sy_yield_bearing = FOS*sigma_bearing;
 l = sqrt((w/2)^2-(pin_diameter/2)^2); 
 Atearout = 2*l*t;
 tau_tearout = Flink/Atearout;
-Sy_yield_tearout = FOS*tau_tearout;
+Sy_yield_tearout = FOS*2*tau_tearout;
 
 % print yield strengths
 fprintf('\nYield strengths:\n')
@@ -130,7 +130,7 @@ Sy_yield_bearing = FOS*sigma_bearing;
 l = sqrt((w/2)^2-(pin_diameter/2)^2); 
 Atearout = 2*l*t;
 tau_tearout = Flink/Atearout;
-Sy_yield_tearout = FOS*tau_tearout;
+Sy_yield_tearout = FOS*2*tau_tearout;
 
 % print yield strengths
 fprintf('\nYield strengths:\n')
@@ -151,14 +151,6 @@ F2_x = -(Force)*(sin(alpha)*sin(theta)*y3 - sin(alpha)*sin(theta)*y4 + sin(alpha
 F2_y = -(Force)*(sin(alpha)*cos(theta)*y4 - sin(theta)*cos(alpha)*y3 - cos(alpha)*cos(theta)*x3 + cos(alpha)*cos(theta)*x4) / (sin(theta)*y3 + cos(theta)*x3) ; % y-component of the force present at rivet 2
 F2 = sqrt( (F2_x).^2 + (F2_y).^2 ) ;
 Flink = F1;
-
-% print reactions
-% fprintf('Reaction forces:\n')
-% fprintf('F1 = %4.4f\n',F1)
-% fprintf('F2x = %4.4f\n',F2_x)
-% fprintf('F2y = %4.4f\n',F2_y)
-% fprintf('F2 = %4.4f\n',F2)
-% fprintf('F3 = %4.4f\n',F3)
 
 % rivet strength - direct shear
 pin_radius_outer = 1/8 ; % inches
@@ -184,17 +176,12 @@ sigma_bearing = Flink/Abearing;
 Sy_yield_bearing = FOS*sigma_bearing;
 
 % link strength
-l = sqrt((w/2)^2-(pin_diameter/2)^2); 
+Rlink = w/2
+Rrivet = pin_diameter/2
+l = sqrt((Rlink)^2-(Rrivet)^2); 
 Atearout = 2*l*t;
 tau_tearout = Flink/Atearout;
-Sy_yield_tearout = FOS*tau_tearout;
-
-% print yield strengths
-% fprintf('\nYield strengths:\n')
-% fprintf('Sy_yield_rivet = %4.4f\n',Sy_yield_rivet)
-% fprintf('Sy_yield_axial = %4.4f\n',Sy_yield_axial)
-% fprintf('Sy_yield_bearing = %4.4f\n',Sy_yield_bearing)
-% fprintf('Sy_yield_tearout = %4.4f\n',Sy_yield_tearout)
+Sy_yield_tearout = FOS*2*tau_tearout;
 
 % plot required strengths 
 figure(1)
@@ -206,19 +193,16 @@ plot(alpha_deg, Sy_yield_bearing, '-g') ;
 hold on 
 plot(alpha_deg, Sy_yield_tearout, '-c') ;
 xlabel('Alpha [degrees]') ;
-ylabel('Required Strength [psi]') ;
+ylabel('Required Yield Strength [psi]') ;
 legend('S_{y,rivet}', 'S_{y,axial}', 'S_{y,bearing}','S_{y,tearout})','Location','NORTHWEST')
 
 % plot crushing force
 figure(2)
 F_can = 2*F1.*cos(theta);
 plot(alpha_deg,F_can,'.k');
-xlabel('Angle (degrees)')
-ylabel('Force on Can (lb_{f})')
+xlabel('Alpha [degrees]')
+ylabel('Force on Can [lb_{f}]')
 
-
-
-
-
-
-
+% claculate max crushing forces angle
+[maxF,I] = max(F_can);
+alphaMaxF = alpha_deg(I)
