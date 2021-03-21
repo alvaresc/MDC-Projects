@@ -17,11 +17,11 @@ clear variables
 x1 = 1.032 ;  % inches
 x2 = 0 ;      % inches
 x3 = 2.825 ;  % inches
-x4 = 9.625 ;  % inches
+x4 = 9.0625 ;  % inches
 y1 = 5.936 ;  % inches
 y2 = 0 ;      % inches
 y3 = 1.16 ;   % inches
-y4 = 7.9375 ; % inches
+y4 = 7.9375; % inches
 pin_diameter = 0.25 ; % inches
 theta = 20.577 * (pi/180) ; % (refers to the theta (in radians) calculated using Pythagorean theorem)
 w = 0.712; % inches
@@ -54,8 +54,8 @@ pin_radius_inner = pin_radius_outer - pin_thickness ; % inches
 pin_inner_area = pi * pin_radius_inner^2 ; % inches^2
 pin_outer_area = pi * pin_radius_outer^2 ; % inches^2
 Area_Pin =  pin_outer_area - pin_inner_area;  % inches^2
-Tau_Pin_1_Shear = F1 / Area_Pin;  % psi 
-Tau_Pin_2_Shear = F2 / Area_Pin; % psi
+Tau_Pin_1_Shear = F1 / Area_Pin  % psi 
+Tau_Pin_2_Shear = F2 / Area_Pin % psi
 Tau_Pin_3_Shear = F3 / Area_Pin;  % psi
 tau_rivet_critical = Tau_Pin_1_Shear;
 Sy_yield_rivet = FOS*2*tau_rivet_critical;
@@ -185,19 +185,24 @@ Sy_yield_tearout = FOS*2*tau_tearout;
 
 % plot required strengths 
 figure(1)
-plot(alpha_deg, Sy_yield_rivet, '-r') ;
+
+plot(alpha_deg, Sy_yield_axial, '.b') ;
 hold on 
-plot(alpha_deg, Sy_yield_axial, '-b') ;
+plot(alpha_deg, Sy_yield_bearing, '.g') ;
 hold on 
-plot(alpha_deg, Sy_yield_bearing, '-g') ;
-hold on 
-plot(alpha_deg, Sy_yield_tearout, '-c') ;
+plot(alpha_deg, Sy_yield_tearout, '.r') ;
 xlabel('Alpha [degrees]') ;
-ylabel('Required Yield Strength [psi]') ;
-legend('S_{y,rivet}', 'S_{y,axial}', 'S_{y,bearing}','S_{y,tearout})','Location','NORTHWEST')
+ylabel('Required Strength of Link [psi]') ;
+legend('S_{y,axial}', 'S_{y,bearing}','S_{y,tearout}','Location','NORTHWEST')
+
+figure(2)
+plot(alpha_deg, Sy_yield_rivet, '.k') ;
+xlabel('Alpha [degrees]') ;
+ylabel('Required Strength of Rivet [psi]') ;
+
 
 % plot crushing force
-figure(2)
+figure(3)
 F_can = 2*F1.*cos(theta);
 plot(alpha_deg,F_can,'.k');
 xlabel('Alpha [degrees]')
