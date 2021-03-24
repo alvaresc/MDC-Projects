@@ -54,8 +54,8 @@ pin_radius_inner = pin_radius_outer - pin_thickness ; % inches
 pin_inner_area = pi * pin_radius_inner^2 ; % inches^2
 pin_outer_area = pi * pin_radius_outer^2 ; % inches^2
 Area_Pin =  pin_outer_area - pin_inner_area;  % inches^2
-Tau_Pin_1_Shear = F1 / Area_Pin  % psi 
-Tau_Pin_2_Shear = F2 / Area_Pin % psi
+Tau_Pin_1_Shear = F1 / Area_Pin;  % psi 
+Tau_Pin_2_Shear = F2 / Area_Pin; % psi
 Tau_Pin_3_Shear = F3 / Area_Pin;  % psi
 tau_rivet_critical = Tau_Pin_1_Shear;
 Sy_yield_rivet = FOS*2*tau_rivet_critical;
@@ -176,8 +176,8 @@ sigma_bearing = Flink/Abearing;
 Sy_yield_bearing = FOS*sigma_bearing;
 
 % link strength
-Rlink = w/2
-Rrivet = pin_diameter/2
+Rlink = w/2;
+Rrivet = pin_diameter/2;
 l = sqrt((Rlink)^2-(Rrivet)^2); 
 Atearout = 2*l*t;
 tau_tearout = Flink/Atearout;
@@ -210,4 +210,4 @@ ylabel('Force on Can [lb_{f}]')
 
 % claculate max crushing forces angle
 [maxF,I] = max(F_can);
-alphaMaxF = alpha_deg(I)
+alphaMaxF = alpha_deg(I);
