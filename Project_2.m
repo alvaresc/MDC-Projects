@@ -83,8 +83,8 @@ sigma3 = [         0, 0,-TauTorsion;
           -TauTorsion, 0,  -sigmaMx];
       
 sigma4 = [0,                     0,                    0;
-          0,                     0, (TauTorsion-TauBeam);
-          0,  (TauTorsion-TauBeam),                    0];
+          0,                     0, (TauTorsion+TauBeam);
+          0,  (TauTorsion+TauBeam),                    0];
       
 % Find Principle stresses
 [V1,D1] = eigs(sigma1)
