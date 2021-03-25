@@ -209,5 +209,5 @@ xlabel('Alpha [degrees]')
 ylabel('Force on Can [lb_{f}]')
 
 % claculate max crushing forces angle
-[maxF,I] = max(F_can);
+[maxF,I] = max(F_can)
 alphaMaxF = alpha_deg(I);
