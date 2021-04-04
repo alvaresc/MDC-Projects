@@ -13,7 +13,7 @@ clc; clear variables; close all;
 
 % Given Measurements            % Units        
 F = 150;                        % lbf        
-x_1 = 1.560;                    % in            
+x_1 = 1.5625;                    % in            
 x_2 = 2.375;                    % in
 x_3 = 3.125;                    % in
 x_4 = 0.6875;                   % in
