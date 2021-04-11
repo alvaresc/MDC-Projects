@@ -18,10 +18,5 @@ bBending = interp1(DdBendingVec,bBendingVec,Dd);
 Kt_torsion = ATorsion*rd^bTorsion;
 Kt_bending = ABending*rd^bBending;
 
-% if isnan(Kt_torsion)
-%     Kt_torsion = Kt_torsion*;
-%     
-% elseif isnan(Kt_bending)
-%     Kt_bending = 10000;
 end
     

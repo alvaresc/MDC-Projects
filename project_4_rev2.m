@@ -195,7 +195,7 @@ Mc = MR(Ic);
 % Create bending moment diagrams as subplot, label points b,G,c
 figure(2)
 subplot(3,1,1), plot(x,My,'g','LineWidth',1), grid on
-title('Basic: Bending Moment Diagrams','FontSize',20)
+title('Medium: Bending Moment Diagrams','FontSize',20)
 ylabel('M_{y} (lb_{f}-in)','FontSize',12)
 xlabel('x (in)','FontSize',12)
 subplot(3,1,2), plot(x,Mz,'g','LineWidth',1), grid on
